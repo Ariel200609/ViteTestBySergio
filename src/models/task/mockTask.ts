@@ -30,7 +30,14 @@ export class MockTask implements TaskCrud<number> {
         this.tam++;
     }
     deleteTask(id: number): void {
-        throw new Error("Method not implemented.");
+        const index = this.container.findIndex((task : Task <number>)=>{
+            return task.getId()===id;
+        })
+        if (index!==-1) {
+            this.container.splice(index,1);
+            this.tam--;
+        }
+        
     }
     editTask(id: number, tarea: string): Task<number>;
     editTask(id: number, cumplida: boolean): Task<number>;

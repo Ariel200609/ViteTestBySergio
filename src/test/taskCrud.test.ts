@@ -18,5 +18,27 @@ describe('Pruebas de taskCrud',()=>{
         expect(task.getId()).equals(1);
         
     })
+    
+    test('delete task',()=>{
+        const task2: Task<number> = new Task<number>(2,'comprar pan',false);
+        crud.addTask(task2);
+        expect(crud.size()).toBe(2);
+        crud.deleteTask(2);
+        expect(crud.size()).toBe(1);
+        
+    })
+    
+    test ('obtenerTareaPorid',()=>{
+        const tarea = crud.getTask(1);
+        expect(tarea.getTarea()).toBe('ir al super');
+    })
 
+    
+    //PUT /task/:id -> actualiza una tarea.
+    test('actualizarTarea',()=>{
+        const tarea = crud.getTask(1);
+        expect(tarea.getTarea()).toBe('ir al super');
+        tarea.setTarea('ir al super y comprar pan');
+        expect(tarea.getTarea()).toBe('ir al super y comprar pan');
+    })
 })  

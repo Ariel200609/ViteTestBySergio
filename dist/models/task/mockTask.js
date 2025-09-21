@@ -28,7 +28,13 @@ class MockTask {
         this.tam++;
     }
     deleteTask(id) {
-        throw new Error("Method not implemented.");
+        const index = this.container.findIndex((task) => {
+            return task.getId() === id;
+        });
+        if (index !== -1) {
+            this.container.splice(index, 1);
+            this.tam--;
+        }
     }
     editTask(id, tarea, cumplida) {
         throw new Error("Method not implemented.");
