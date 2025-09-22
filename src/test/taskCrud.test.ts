@@ -41,4 +41,31 @@ describe('Pruebas de taskCrud',()=>{
         tarea.setTarea('ir al super y comprar pan');
         expect(tarea.getTarea()).toBe('ir al super y comprar pan');
     })
+
+    test('EditTask',()=>{
+        const tarea = crud.editTask(1,'ir al super y comprar pan',true);
+        expect(tarea.getTarea()).toBe('ir al super y comprar pan');
+        expect(tarea.getCumplida()).toBeTruthy();
+    })
+    test('EditTask solo tarea',()=>{
+        const tarea = crud.editTask(1,'ir al super y comprar pan y leche');
+        expect(tarea.getTarea()).toBe('ir al super y comprar pan y leche');
+        expect(tarea.getCumplida()).toBeTruthy();
+    })
+    test('EditTask solo cumplida',()=>{
+        const tarea = crud.editTask(1,undefined,false);
+        expect(tarea.getTarea()).toBe('ir al super y comprar pan y leche');
+        expect(tarea.getCumplida()).toBeFalsy();
+    })
+    test('editTask sin parametros',()=>{    
+        const tarea = crud.editTask(1);
+        expect(tarea.getTarea()).toBe('ir al super y comprar pan y leche');
+        expect(tarea.getCumplida()).toBeFalsy();
+    })
+    test('editTask completamente',()=>{    
+        const tarea = crud.editTask(1,'ir al super y comprar pan y leche y huevos',true);
+        expect(tarea.getTarea()).toBe('ir al super y comprar pan y leche y huevos');
+        expect(tarea.getCumplida()).toBeTruthy();
+    })
+
 })  

@@ -12,8 +12,8 @@ export class MockTask implements TaskCrud<number> {
     size(): number {
         return this.tam;
     }
-    getTasks(): Task<number> {
-        throw new Error("Method not implemented.");
+    getTasks(): Task<number>[] {
+        return this.container;
     }
     getTask(id: number): Task<number> {
 
@@ -39,11 +39,11 @@ export class MockTask implements TaskCrud<number> {
         }
         
     }
-    editTask(id: number, tarea: string): Task<number>;
-    editTask(id: number, cumplida: boolean): Task<number>;
-    editTask(id: number, tarea: string, cumplida: boolean): Task<number>;
-    editTask(id: unknown, tarea: unknown, cumplida?: unknown): import("./task").Task<number> {
-        throw new Error("Method not implemented.");
+    editTask(id: number, tarea?: string, cumplida?: boolean): Task<number> {
+            const task = this.getTask(id);
+            if (tarea !== undefined) task.setTarea(tarea);
+            if (cumplida !== undefined) task.setCumplida(cumplida);
+            return task;
     }
 
 }
